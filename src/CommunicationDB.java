@@ -1,8 +1,9 @@
 import java.sql.*;
 
+
 public class CommunicationDB {
 
-    private static Connection getDBConnection() {
+    public static Connection getDBConnection() {
         Connection connection = null;
 
         try {
@@ -16,17 +17,19 @@ public class CommunicationDB {
 
             connection = DriverManager.getConnection(dbURL);
             return connection;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return connection;
+
     }
 
-    private static void retrieve() throws SQLException {
+    public static void retrieve() throws SQLException {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultset = null;
-        String query = "SELECT * FROM collection;";
+        String query = "SELECT * FROM DVDs;";
         try {
             connection = getDBConnection();
             statement = connection.createStatement();
@@ -35,7 +38,7 @@ public class CommunicationDB {
             while (resultset.next()) {
                 System.out.println(resultset.getString("ID"));
                 System.out.println(resultset.getString("Title"));
-                System.out.println(resultset.getString("Genre"));
+                System.out.println(resultset.getString("IMDB Rating"));
                 System.out.println(resultset.getString("Year"));
             }
         } catch (SQLException e) {
@@ -44,12 +47,10 @@ public class CommunicationDB {
             if (resultset != null) {
                 resultset.close();
             }
-            if (
-                    statement != null) {
+            if (statement != null) {
                 statement.close();
             }
-            if (
-                    connection != null) {
+            if (connection != null) {
                 connection.close();
             }
         }
