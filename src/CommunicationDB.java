@@ -13,7 +13,7 @@ public class CommunicationDB {
             e.printStackTrace();
         }
         try {
-            String dbURL = "jdbc:sqlite:dvd:sqlite";
+            String dbURL = "jdbc:sqlite:C:/Users/Steve/OneDrive/Documents/SQLite-DB-Files/dvd.db";
 
             connection = DriverManager.getConnection(dbURL);
             return connection;
@@ -38,8 +38,9 @@ public class CommunicationDB {
             while (resultset.next()) {
                 System.out.println(resultset.getString("ID"));
                 System.out.println(resultset.getString("Title"));
-                System.out.println(resultset.getString("IMDB Rating"));
+                System.out.println(resultset.getString("IDMB Rating"));
                 System.out.println(resultset.getString("Year"));
+                System.out.println(resultset.getString("Director"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
