@@ -68,7 +68,7 @@ public class CommunicationDB {
             preparedStatement.setString(1, "Inception");
             preparedStatement.setInt(2, 2010);
             preparedStatement.setString(3, "Christopher Nolan");
-            preparedStatement.setDouble(4,8.8);
+            preparedStatement.setDouble(4, 8.8);
             preparedStatement.setInt(5, 11);
 
 
@@ -79,7 +79,30 @@ public class CommunicationDB {
         }
     }
 
-    public static void update() {}
+    public static void update() throws SQLException {
+        Connection connection = null;
+        ResultSet resultset = null;
+      //  String sql = "UPDATE DVDs SET (Title, Year, Director, Rating, ID) VALUES (?, ?, ?, ?, ?)";
+        String sql = "UPDATE DVDs SET Title=?, Year=?, Director=?, Rating=?, ID=? WHERE ID=1";
+
+
+        connection = getDBConnection();
+        int rowsInserted;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, "Jackie Brown");
+            /*preparedStatement.setInt(2, 2010);
+            preparedStatement.setString(3, "Christopher Nolan");
+            preparedStatement.setDouble(4, 8.8);
+            preparedStatement.setInt(5, 11);*/
+
+            rowsInserted = preparedStatement.executeUpdate();
+        }
+        if (rowsInserted > 0) {
+            System.out.println("A  DVD was updated successfully!");
+        }
+
+    }
 }
 
 

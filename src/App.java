@@ -5,6 +5,7 @@ public class App {
         CommunicationDB.getDBConnection();
         CommunicationDB.retrieve();
         CommunicationDB.insert();
+        CommunicationDB.update();
 
 
     }
